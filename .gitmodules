@@ -1,0 +1,6 @@
+[submodule "ftmpl/lib/raylib"]
+	path = ftmpl/lib/raylib
+	url = https://github.com/raysan5/raylib
+[submodule "ftmpl/lib/ferox"]
+	path = ftmpl/lib/ferox
+	url = https://github.com/c-krit/ferox
