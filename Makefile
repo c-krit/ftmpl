@@ -22,11 +22,13 @@
 
 .PHONY: all clean
 
+# TODO: Change the values of `PROJECT_NAME`, `PROJECT_PATH`, and `PROJECT_PREFIX`
 PROJECT_NAME := c-krit/ftmpl
 PROJECT_PATH := ftmpl
-PROJECT_PREFIX := $(shell tput setaf 2)$(PROJECT_NAME):$(shell tput sgr0)
+PROJECT_PREFIX := $(shell tput setaf 8)$(PROJECT_NAME):$(shell tput sgr0)
 
 BINARY_PATH := $(PROJECT_PATH)/bin
+INCLUDE_PATH := $(PROJECT_PATH)/include
 LIBRARY_PATH := $(PROJECT_PATH)/lib
 SOURCE_PATH := $(PROJECT_PATH)/src
 
@@ -36,6 +38,8 @@ RAYLIB_PATH ?= $(LIBRARY_PATH)/raylib
 SOURCES := $(SOURCE_PATH)/main.c
 
 OBJECTS := $(SOURCES:.c=.o)
+
+# TODO: Edit the line below if you want another name for your executable
 TARGETS := $(BINARY_PATH)/$(PROJECT_PATH)
 
 HOST_OS := LINUX
@@ -51,8 +55,8 @@ else
 endif
 
 CC := gcc
-CFLAGS := -D_DEFAULT_SOURCE -g -std=gnu99 -O2
-LDFLAGS := -no-pie
+CFLAGS := -D_DEFAULT_SOURCE -g $(INCLUDE_PATH:%=-I%) -std=gnu99 -O2
+LDFLAGS := $(LIBRARY_PATH:%=-L%) -no-pie
 LDLIBS := -lferox -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 
 CFLAGS += -I$(FEROX_PATH)/ferox/include
@@ -65,6 +69,7 @@ ifeq ($(TARGET_OS),WINDOWS)
 		CC := x86_64-w64-mingw32-gcc
 	endif
 
+# TODO: Edit the line below if you want another name for your executable
 	TARGETS := $(BINARY_PATH)/$(PROJECT_PATH).exe
 
 	CFLAGS += -I$(RAYLIB_PATH)/src
