@@ -13,8 +13,9 @@ A small raylib template for the [ferox](https://github.com/c-krit/ferox) physics
 
 <img src="ftmpl/res/images/screenshot.png" alt="c-krit/ftmpl"><br>
 
-- Support compiling on GNU/Linux or Windows with [MSYS2 (MINGW64)](https://www.msys2.org/)
-- Support cross-compiling from GNU/Linux to Windows
+- Supports compiling on GNU/Linux or Windows with [MSYS2 (MINGW64)](https://www.msys2.org/)
+- Supports cross-compiling from GNU/Linux to Windows
+- Supports compiling into WebAssembly
 - Colored text output for `Makefile`
 
 ## Prerequisites
@@ -50,15 +51,21 @@ After building the required libraries, go to the directory where `Makefile` is l
 $ make
 ```
 
+Or if you are compiling for the Web:
+
+```console
+$ make PLATFORM=WEB
+```
+
 Or if you are cross-compiling for Windows:
 
 ```console
-$ make TARGET_OS=WINDOWS
+$ make PLATFORM=WINDOWS
 ```
 
 More things you can do for your project:
 
-- Change the values of `PROJECT_NAME`, `PROJECT_PATH`, and `PROJECT_PREFIX` in `Makefile`
+- Change the values of `PROJECT_NAME` and `PROJECT_FULL_NAME` in `Makefile`
 - Edit this `README.md` file, and delete the images in the `ftmpl/res` directory
 
 ## License
